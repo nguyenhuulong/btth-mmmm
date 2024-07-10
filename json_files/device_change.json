@@ -1,0 +1,42 @@
+[
+  {
+    "eventType": "UPDATE",
+    "table": "device",
+    "payload": {
+      "system_health_cpu": null,
+      "unit_id": "521eefb3-9c48-4a79-b49c-f0b4a422792b",
+      "model": "WS-C2960X-24TS-L",
+      "is_generated_sn": false,
+      "system_health_temperatures": null,
+      "status": true,
+      "os_version": null,
+      "category": null,
+      "type": "SWITCH",
+      "system_health_memory": null,
+      "serial_number": "FOT2026W01H",
+      "is_authorized": null,
+      "update_by": "nac",
+      "create_by": "btl86",
+      "create_date": "2024-05-02T09:11:25.344",
+      "vendor": "Cisco",
+      "code": null,
+      "host_name": "SW_T2",
+      "update_date": "2024-05-10T03:49:40.576",
+      "uuid": "ac1c0003-8f2d-1426-818f-3892a3a000e0",
+      "accessible": true,
+      "order_date": "2024-05-02T09:11:25.344",
+      "last_time_dowm": null,
+      "description": null,
+      "protocol": null,
+      "mac": null,
+      "last_authentication": "2024-01-11T00:00:18",
+      "organization_id": null,
+      "management_ip": "192.168.200.20",
+      "building": null,
+      "floor": null,
+      "room": null,
+      "name": "SW_T2",
+      "manager_name": null
+    }
+  }
+]

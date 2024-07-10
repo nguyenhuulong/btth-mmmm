@@ -1,0 +1,48 @@
+[
+  {
+    "eventType": "UPDATE",
+    "table": "vlan",
+    "payload": {
+      "active": true,
+      "client_id": "bc5462f5-57dc-4a06-8d7d-273561aab5a4",
+      "create_by": "e092a017-9257-416a-87de-9b0c4a86cd0f",
+      "create_date": "2022-09-05T09:05:08.215",
+      "description": "",
+      "device_id": "7f000001-82f8-1c40-8182-f8db735e012d",
+      "device_sn": null,
+      "exclude_ip_range": "",
+      "ip": null,
+      "ip_range": "",
+      "mac": " 84-B5-17-E6-34-DC89",
+      "name": null,
+      "order_date": null,
+      "update_by": "e092a017-9257-416a-87de-9b0c4a86cd0f",
+      "update_date": "2022-09-05T09:05:08.215",
+      "uuid": "7f000001-82f8-1c40-8183-0b64f0f7019a",
+      "vlan_id": 160
+    }
+  },
+  {
+    "eventType": "UPDATE",
+    "table": "vlan",
+    "payload": {
+      "active": true,
+      "client_id": "bc5462f5-57dc-4a06-8d7d-273561aab5a4",
+      "create_by": "e092a017-9257-416a-87de-9b0c4a86cd0f",
+      "create_date": "2022-09-05T09:05:08.215",
+      "description": "",
+      "device_id": "7f000001-82f8-1c40-8182-f8db735e012d",
+      "device_sn": null,
+      "exclude_ip_range": "",
+      "ip": null,
+      "ip_range": "",
+      "mac": " 84-B5-17-E6-34-DC",
+      "name": null,
+      "order_date": null,
+      "update_by": "e092a017-9257-416a-87de-9b0c4a86cd0f",
+      "update_date": "2022-09-05T09:05:08.215",
+      "uuid": "7f000001-82f8-1c40-8183-0b64f0f7019a",
+      "vlan_id": 160
+    }
+  }
+]

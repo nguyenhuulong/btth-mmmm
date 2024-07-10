@@ -1,0 +1,36 @@
+[
+  {
+    "eventType": "UPDATE",
+    "table": "file",
+    "payload": {
+      "attachment_id": "ac1b0002-8fb7-1f45-818f-b7ed510b013e",
+      "create_by": "btl86789",
+      "create_date": "2024-05-27T02:42:14.412",
+      "name": "Trung tâm ứng phó sự cố hóa chất miền Trung.svg",
+      "order_date": "2024-05-27T02:42:14.412",
+      "path": "attachments/19c0c7c0-73f2-4059-bef0-1982194b4b48-Trung tâm ứng phó sự cố hóa chất miền Trung.svg",
+      "size": 5466,
+      "type": "image/svg+xml",
+      "update_by": "btl86",
+      "update_date": "2024-05-27T02:42:14.412",
+      "uuid": "ac1b0002-8fb7-1f45-818f-b7ed510c013f"
+    }
+  },
+  {
+    "eventType": "UPDATE",
+    "table": "file",
+    "payload": {
+      "attachment_id": "ac1b0002-8fb7-1f45-818f-b7ed510b013e",
+      "create_by": "btl86",
+      "create_date": "2024-05-27T02:42:14.412",
+      "name": "Trung tâm ứng phó sự cố hóa chất miền Trung.svg",
+      "order_date": "2024-05-27T02:42:14.412",
+      "path": "attachments/19c0c7c0-73f2-4059-bef0-1982194b4b48-Trung tâm ứng phó sự cố hóa chất miền Trung.svg",
+      "size": 5466,
+      "type": "image/svg+xml",
+      "update_by": "btl86",
+      "update_date": "2024-05-27T02:42:14.412",
+      "uuid": "ac1b0002-8fb7-1f45-818f-b7ed510c013f"
+    }
+  }
+]
