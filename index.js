@@ -69,7 +69,7 @@ async function appendChangeToFile(change) {
     eventType: change.eventType,
     table: change.table,
     payload: change.new,
-    uuid: change.old.uuid
+    uuid: change.eventType == "INSERT" ? change.new.uuid : change.old.uuid,
   });
 
   fs.writeFileSync(filePath, JSON.stringify(changes, null, 2));
