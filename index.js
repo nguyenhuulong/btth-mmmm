@@ -10,6 +10,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   db: { schema: "vz" },
 });
 
+// Hàm để lấy danh sách các bảng từ schema
 async function getTablesFromSchema(schema) {
   const { data, error } = await supabase.rpc("get_tables", {
     schema_name: schema,
@@ -23,12 +24,42 @@ async function getTablesFromSchema(schema) {
   return data.map(row => row.table_name);
 }
 
+// Hàm để ghi thay đổi vào tệp JSON và log vào tệp TXT
 async function appendChangeToFile(change) {
   const directory = path.join(__dirname, "json_files");
-  const filePath = path.join(directory, `${change.table}_change.json`);
 
+  // Tạo thư mục nếu chưa tồn tại
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
+  }
+
+  const files = fs.readdirSync(directory);
+  const tableFiles = files.filter(file =>
+    file.startsWith(`${change.table}_change`)
+  );
+  let filePath;
+
+  if (tableFiles.length === 0) {
+    // Nếu chưa có file nào cho bảng này, tạo file mới với timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    filePath = path.join(directory, `${change.table}_change_${timestamp}.json`);
+
+    // Ghi log vào file txt
+    const logDirectory = path.join(__dirname, "log_files");
+    if (!fs.existsSync(logDirectory)) {
+      fs.mkdirSync(logDirectory);
+    }
+
+    const currentDate = new Date().toLocaleDateString().replace(/\//g, "-");
+    const logFilePath = path.join(logDirectory, `${currentDate}.txt`);
+    const logContent = `CREATE ${path.basename(
+      filePath
+    )} ${new Date().toLocaleString()}\n`;
+
+    fs.appendFileSync(logFilePath, logContent);
+  } else {
+    // Nếu đã có file, lấy file đầu tiên (giả định chỉ có một file cho mỗi bảng)
+    filePath = path.join(directory, tableFiles[0]);
   }
 
   let changes = [];
@@ -46,7 +77,10 @@ async function appendChangeToFile(change) {
   fs.writeFileSync(filePath, JSON.stringify(changes, null, 2));
 }
 
+// Hàm để thiết lập subscription cho từng bảng
 async function subscribeToTableChanges(table) {
+  console.log(`Setting up subscription for table ${table}...`);
+
   const channel = supabase
     .channel(`custom-all-channel-${table}`)
     .on(
@@ -57,7 +91,9 @@ async function subscribeToTableChanges(table) {
         appendChangeToFile(payload);
       }
     )
-    .subscribe();
+    .subscribe(status => {
+      console.log(`Subscription status for table ${table}:`, status);
+    });
 
   const { error } = await channel;
 
@@ -68,6 +104,7 @@ async function subscribeToTableChanges(table) {
   }
 }
 
+// Hàm chính để lấy danh sách các bảng và thiết lập subscription
 async function main() {
   const schema = "vz";
   const tables = await getTablesFromSchema(schema);
