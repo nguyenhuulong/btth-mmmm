@@ -1,15 +1,17 @@
 {
-  "name": "btth-mmmm",
+  "name": "supabase-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.44.3"
+    "@supabase/supabase-js": "^2.44.3",
+    "dotenv": "^16.4.5"
   }
 }
