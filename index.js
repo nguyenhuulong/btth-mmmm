@@ -10,7 +10,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
   db: { schema: "vz" },
 });
 
-// Hàm để lấy danh sách các bảng từ schema
 async function getTablesFromSchema(schema) {
   const { data, error } = await supabase.rpc("get_tables", {
     schema_name: schema,
@@ -24,11 +23,9 @@ async function getTablesFromSchema(schema) {
   return data.map(row => row.table_name);
 }
 
-// Hàm để ghi thay đổi vào tệp JSON và log vào tệp TXT
 async function appendChangeToFile(change) {
   const directory = path.join(__dirname, "json_files");
 
-  // Tạo thư mục nếu chưa tồn tại
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
   }
@@ -40,11 +37,9 @@ async function appendChangeToFile(change) {
   let filePath;
 
   if (tableFiles.length === 0) {
-    // Nếu chưa có file nào cho bảng này, tạo file mới với timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     filePath = path.join(directory, `${change.table}_change_${timestamp}.json`);
 
-    // Ghi log vào file txt
     const logDirectory = path.join(__dirname, "log_files");
     if (!fs.existsSync(logDirectory)) {
       fs.mkdirSync(logDirectory);
@@ -58,7 +53,6 @@ async function appendChangeToFile(change) {
 
     fs.appendFileSync(logFilePath, logContent);
   } else {
-    // Nếu đã có file, lấy file đầu tiên (giả định chỉ có một file cho mỗi bảng)
     filePath = path.join(directory, tableFiles[0]);
   }
 
@@ -77,7 +71,6 @@ async function appendChangeToFile(change) {
   fs.writeFileSync(filePath, JSON.stringify(changes, null, 2));
 }
 
-// Hàm để thiết lập subscription cho từng bảng
 async function subscribeToTableChanges(table) {
   console.log(`Setting up subscription for table ${table}...`);
 
@@ -91,20 +84,15 @@ async function subscribeToTableChanges(table) {
         appendChangeToFile(payload);
       }
     )
-    .subscribe(status => {
-      console.log(`Subscription status for table ${table}:`, status);
-    });
+    .subscribe();
 
   const { error } = await channel;
 
   if (error) {
     console.error(`Error subscribing to changes for table ${table}:`, error);
-  } else {
-    console.log(`Subscribed to changes in table ${table}`);
   }
 }
 
-// Hàm chính để lấy danh sách các bảng và thiết lập subscription
 async function main() {
   const schema = "vz";
   const tables = await getTablesFromSchema(schema);
