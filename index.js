@@ -3,6 +3,9 @@ const { createClient } = require("@supabase/supabase-js");
 const fs = require("fs");
 const path = require("path");
 
+const jsonDirectory = path.join(__dirname, process.env.JSON_FILES_PATH);
+const sendDirectory = path.join(__dirname, process.env.SEND_FILES_PATH);
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
@@ -24,7 +27,7 @@ async function getTablesFromSchema(schema) {
 }
 
 async function appendChangeToFile(change) {
-  const directory = path.join(__dirname, "json_files");
+  const directory = path.join(__dirname, process.env.JSON_FILES_PATH);
 
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
@@ -40,7 +43,7 @@ async function appendChangeToFile(change) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     filePath = path.join(directory, `${change.table}_change_${timestamp}.json`);
 
-    const logDirectory = path.join(__dirname, "log_files");
+    const logDirectory = path.join(__dirname, process.env.LOG_FILES_PATH);
     if (!fs.existsSync(logDirectory)) {
       fs.mkdirSync(logDirectory);
     }
@@ -66,6 +69,7 @@ async function appendChangeToFile(change) {
     eventType: change.eventType,
     table: change.table,
     payload: change.new,
+    uuid: change.old.uuid
   });
 
   fs.writeFileSync(filePath, JSON.stringify(changes, null, 2));
@@ -100,5 +104,32 @@ async function main() {
     subscribeToTableChanges(table);
   });
 }
+
+function ensureDirectoryExists(directory) {
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory);
+  }
+}
+
+function cutAndPasteFiles() {
+  ensureDirectoryExists(sendDirectory);
+  fs.readdir(jsonDirectory, (err, files) => {
+    if (err) {
+      console.error("Error reading directory:", err);
+      return;
+    }
+    files.forEach(file => {
+      const sourceFile = path.join(jsonDirectory, file);
+      const destinationFile = path.join(sendDirectory, file);
+      fs.rename(sourceFile, destinationFile, err => {
+        if (err) {
+          console.error(`Error moving file ${file}:`, err);
+        }
+      });
+    });
+  });
+}
+
+setInterval(cutAndPasteFiles, process.env.SEND_TIME);
 
 main();
