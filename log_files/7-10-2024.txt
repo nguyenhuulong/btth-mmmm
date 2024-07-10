@@ -1,7 +1,3 @@
-CREATE rule_change_2024-07-10T03-35-09-886Z.json 7/10/2024, 10:35:09 AM
-CREATE unit_change_2024-07-10T03-35-45-324Z.json 7/10/2024, 10:35:45 AM
-CREATE alerts_filter_change_2024-07-10T04-34-29-265Z.json 7/10/2024, 11:34:29 AM
-CREATE alerts_filter_change_2024-07-10T04-36-38-077Z.json 7/10/2024, 11:36:38 AM
-CREATE alerts_filter_change_2024-07-10T06-33-16-859Z.json 7/10/2024, 1:33:16 PM
-CREATE alerts_filter_change_2024-07-10T06-49-38-745Z.json 7/10/2024, 1:49:38 PM
-CREATE alerts_filter_change_2024-07-10T06-53-08-807Z.json 7/10/2024, 1:53:08 PM
+CREATE 1720602375_alerts_filter_change.json 7/10/2024, 4:06:15 PM
+CREATE 1720602680_log_change.json 7/10/2024, 4:11:21 PM
+CREATE 1720602692_rule_change.json 7/10/2024, 4:11:32 PM

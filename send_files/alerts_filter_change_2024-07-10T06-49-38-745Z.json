@@ -1,7 +1,0 @@
-[
-  {
-    "eventType": "DELETE",
-    "table": "alerts_filter",
-    "payload": {}
-  }
-]

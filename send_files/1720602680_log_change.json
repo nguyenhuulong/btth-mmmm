@@ -1,0 +1,18 @@
+[
+  {
+    "eventType": "INSERT",
+    "table": "log",
+    "payload": {
+      "create_by": "123",
+      "create_date": "2024-07-10T16:11:13",
+      "event": "123",
+      "mac": "123",
+      "order_date": "2024-07-10T16:11:15",
+      "unit_id": "123",
+      "update_by": "123",
+      "update_date": null,
+      "uuid": "123"
+    },
+    "uuid": "123"
+  }
+]

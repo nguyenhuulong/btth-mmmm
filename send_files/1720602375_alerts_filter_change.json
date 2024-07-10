@@ -1,0 +1,36 @@
+[
+  {
+    "eventType": "UPDATE",
+    "table": "alerts_filter",
+    "payload": {
+      "create_by": "btl87",
+      "create_date": "2024-01-12T17:56:39.624",
+      "description": null,
+      "event": "policy",
+      "isdefault": true,
+      "order_date": "2024-01-12T17:56:39.624",
+      "update_by": "btl86",
+      "update_date": "2024-01-12T17:56:39.624",
+      "uuid": "ac110002-8cfe-18de-818c-fed19e490000",
+      "warninglevel": 3
+    },
+    "uuid": "ac110002-8cfe-18de-818c-fed19e490000"
+  },
+  {
+    "eventType": "UPDATE",
+    "table": "alerts_filter",
+    "payload": {
+      "create_by": "btl89",
+      "create_date": "2024-01-12T18:54:47.291",
+      "description": null,
+      "event": "malware",
+      "isdefault": null,
+      "order_date": "2024-01-12T18:54:47.291",
+      "update_by": "btl86",
+      "update_date": "2024-01-12T18:54:47.291",
+      "uuid": "ac110002-8cfe-1443-818c-ff06d5fb0000",
+      "warninglevel": 2
+    },
+    "uuid": "ac110002-8cfe-1443-818c-ff06d5fb0000"
+  }
+]

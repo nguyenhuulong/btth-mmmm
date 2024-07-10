@@ -35,13 +35,13 @@ async function appendChangeToFile(change) {
 
   const files = fs.readdirSync(directory);
   const tableFiles = files.filter(file =>
-    file.startsWith(`${change.table}_change`)
+    file.endsWith(`_${change.table}_change.json`)
   );
   let filePath;
 
   if (tableFiles.length === 0) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    filePath = path.join(directory, `${change.table}_change_${timestamp}.json`);
+    const timestamp = Math.floor(Date.now() / 1000);
+    filePath = path.join(directory, `${timestamp}_${change.table}_change.json`);
 
     const logDirectory = path.join(__dirname, process.env.LOG_FILES_PATH);
     if (!fs.existsSync(logDirectory)) {
