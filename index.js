@@ -73,7 +73,6 @@ async function appendChangeToFile(change) {
 
 async function subscribeToTableChanges(table) {
   console.log(`Setting up subscription for table ${table}...`);
-
   const channel = supabase
     .channel(`custom-all-channel-${table}`)
     .on(
